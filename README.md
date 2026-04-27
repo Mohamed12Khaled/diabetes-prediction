@@ -83,14 +83,21 @@ between test F1 and CV F1 signals overfitting.
 
 ## Results
 
-| Model | Recall | F1-Score | ROC-AUC | Accuracy |
-|-------|:------:|:--------:|:-------:|:--------:|
-| Logistic Regression | — | — | — | — |
-| KNN | — | — | — | — |
-| SVM | — | — | — | — |
-| Decision Tree | — | — | — | — |
-| Random Forest | — | — | — | — |
-| XGBoost | — | — | — | — |
+| Model | Recall | F1-Score | ROC-AUC | Accuracy | CV F1 |
+|-------|:------:|:--------:|:-------:|:--------:|:-----:|
+| Logistic Regression | 0.778 | 0.683 | 0.827 | 0.747 | 0.747 |
+| KNN | 0.741 | 0.755 | 0.866 | 0.831 | 0.748 |
+| SVM | 0.870 | 0.777 | 0.903 | 0.825 | 0.784 |
+| **Decision Tree** | **0.926** | **0.847** | 0.925 | **0.883** | 0.781 |
+| Random Forest | 0.778 | 0.792 | **0.949** | 0.857 | **0.818** |
+| XGBoost | 0.833 | 0.826 | **0.953** | 0.877 | 0.816 |
+
+> Metric priority: **Recall** is most important in a medical screening context —
+> missing a diabetic patient is a more serious error than a false alarm.
+>
+> - **Best Recall & F1:** Decision Tree (Recall = 0.926, F1 = 0.847)
+> - **Best ROC-AUC:** XGBoost (0.953), followed closely by Random Forest (0.949)
+> - **Most stable (CV F1):** Random Forest and XGBoost both at 0.818 — lowest gap between test and cross-validation performance
 
 > Metric priority: **Recall** is most important in a medical screening context — 
 > missing a diabetic patient is a more serious error than a false alarm.
